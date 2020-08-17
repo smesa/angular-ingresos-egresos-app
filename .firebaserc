@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "redux-ingreso-egreso-app-fbefc": {
+      "hosting": {
+        "ingresoEgresoApp": [
+          "redux-ingreso-egreso-app-fbefc"
+        ]
+      }
+    }
+  }
+}
