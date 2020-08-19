@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routing.module';
 import { environment } from 'src/environments/environment';
+import { ChartsModule } from 'ng2-charts';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -24,6 +25,8 @@ import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { TitleCasePipe } from '@angular/common';
+import { OrdenarIngresoPipe } from './pipes/ordenar-ingreso.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrdenarIngresoPipe
   ],
   imports: [
     BrowserModule,
@@ -46,9 +50,10 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     StoreModule.forRoot(appReducers),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    ChartsModule
   ],
-  providers: [],
+  providers: [TitleCasePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
