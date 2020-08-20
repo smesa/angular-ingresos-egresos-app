@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { dashboardRoutes } from './dashboard/dashboard.routes';
 import { AuthGuard } from './services/auth.guard';
 
 const extraOptions: ExtraOptions = {
@@ -11,14 +10,13 @@ const extraOptions: ExtraOptions = {
 };
 
 const routes: Routes = [
-  {
-    path: '',
-    component: DashboardComponent,
-    children: dashboardRoutes,
-    canActivate: [AuthGuard]
-  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: '',
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./ingreso-egreso/ingreso-egreso.module').then(m => m.IngresoEgresoModule)
+  },
   { path: '**', component: DashboardComponent },
 ];
 
